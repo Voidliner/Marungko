@@ -1,3 +1,6 @@
+let counter_1 = 0;
+let counter_2 = 0;
+
 const bg_1 = document.createElement("img");
 bg_1.src = "image/image_1.jpg";
 bg_1.style.position = "relative";
@@ -11,7 +14,7 @@ const bg_1Cover = document.createElement("div");
 bg_1Cover.style.position = "absolute";
 bg_1Cover.style.top = "0px";
 bg_1Cover.style.left = "50%";
-bg_1Cover.style.width = "120%"; 
+bg_1Cover.style.width = "103%"; 
 bg_1Cover.style.height = "195vh";
 bg_1Cover.style.backgroundColor = "black";
 bg_1Cover.style.opacity = "0.5";
@@ -89,7 +92,7 @@ const bg_2Cover = document.createElement("div");
 bg_2Cover.style.position = "absolute";
 bg_2Cover.style.top = "692px";
 bg_2Cover.style.left = "0";
-bg_2Cover.style.width = "120%"; 
+bg_2Cover.style.width = "100%"; 
 bg_2Cover.style.height = "100vh";
 bg_2Cover.style.backgroundColor = "black";
 bg_2Cover.style.transition = "opacity 0.5s ease-in-out";
@@ -134,6 +137,65 @@ ReadBody.style.display = "flex";
 ReadBody.style.justifyContent = "center"; 
 ReadBody.style.textAlign = "center";
 
+const bg_3 = document.createElement("img");
+bg_3.id = "bg_3";
+bg_3.src = "image/image_3.jpeg";
+bg_3.style.position = "relative";
+bg_3.style.left = "0%";
+bg_3.style.width = "100vw"; 
+bg_3.style.height = "100vh";
+bg_3.style.transition = "opacity 1s ease-in-out";
+bg_3.style.opacity = "0";
+
+const bg_3Cover = document.createElement("div");
+bg_3Cover.style.position = "absolute";
+bg_3Cover.style.top = "1760px";
+bg_3Cover.style.left = "50%";
+bg_3Cover.style.width = "103%"; 
+bg_3Cover.style.height = "100vh";
+bg_3Cover.style.backgroundColor = "black";
+bg_3Cover.style.opacity = "0.5";
+bg_3Cover.style.transform = "translate(-50%, -50%)";
+
+const ExploreTitle = document.createElement("h1");
+ExploreTitle.innerHTML = "Start Explore Now";
+ExploreTitle.style.position = "absolute";
+ExploreTitle.style.top = "1620px";
+ExploreTitle.style.left = "70%";
+ExploreTitle.style.width = "90%";
+ExploreTitle.style.color = "white";
+ExploreTitle.style.fontSize = "50px";
+ExploreTitle.style.fontFamily = "Helvetica";
+ExploreTitle.style.transform = "translate(-50%, -50%)";
+ExploreTitle.style.transition = "opacity 1.2s ease-in-out, top 1s ease-in-out";
+ExploreTitle.style.opacity = "0";
+ExploreTitle.style.textShadow = "-1px -1px 0px black, " + "1px -1px 0px black, " + "-1px 1px 0px black, " + "1px 1px 0px black";
+ExploreTitle.style.display = "flex";
+ExploreTitle.style.justifyContent = "center"; 
+ExploreTitle.style.textAlign = "center";
+
+const Program_Button = document.createElement("div");
+Program_Button.innerHTML = "Programs";
+Program_Button.style.position = "absolute";
+Program_Button.style.top = "1750px";
+Program_Button.style.left = "70%";
+Program_Button.style.width = "350px"; 
+Program_Button.style.height = "8%";
+Program_Button.style.color = "white";
+Program_Button.style.fontSize = "40px";
+Program_Button.style.fontWeight = "300";
+Program_Button.style.fontFamily = "Helvetica";
+Program_Button.style.display = "flex";
+Program_Button.style.textAlign = "center";
+Program_Button.style.alignItems = "center";
+Program_Button.style.justifyContent = "center"; 
+Program_Button.style.borderRadius = "20px";
+Program_Button.style.outline = "2px solid white";
+Program_Button.style.transition = "background-color 0.3s, color 0.3s, opacity 1.2s ease-in-out, top 1s ease-in-out";
+Program_Button.style.transform = "translate(-50%, -50%)";
+Program_Button.style.cursor = "pointer";
+Program_Button.style.opacity = "0";
+
 document.body.append(bg_1);
 document.body.append(bg_1Cover);
 document.body.append(title);
@@ -151,13 +213,21 @@ function adjustBackground() {
     if (window.innerWidth < 1000) {
 	bg_1.style.width = "1500px";
 	bg_2.style.width = "1500px";
+	bg_3.style.width = "1500px";
     	bg_1.style.height = auto;
-	bg_2.style.height = auto;	
-	}
+	bg_2.style.height = auto;
+	bg_3.style.height = auto;	
+	ExploreTitle.style.left = "100%";
+	
+	} else {
     bg_1.style.width = "1500px"; 
-    bg_2.style.width = window.innerWidth + "px";
+    bg_2.style.width = "1500px";
+    bg_3.style.width = "1500px";
     bg_1.style.height = auto; 
     bg_2.style.height = auto;
+    bg_3.style.height = auto;
+    ExploreTitle.style.left = "1270%";
+	}
 }
 
 
@@ -172,10 +242,13 @@ GetStarted_Button.addEventListener("mouseout", () => {
 	});
 
 GetStarted_Button.addEventListener("click", () => {
+    if (counter_1 == 0) {
     document.body.append(bg_2);
     document.body.append(bg_2Cover);
     document.body.append(ReadTitle);
     document.body.append(ReadMore_Button);
+    counter_1 = 1;
+	}
     const targetElement = document.getElementById("bg_2");  // Use the variable to access the element
     targetElement.scrollIntoView({ behavior: "smooth" });
       
@@ -202,12 +275,27 @@ ReadMore_Button.addEventListener("click", () => {
 	setTimeout(() => { ReadMore_Button.innerHTML = "Start Reading";}, 1200);
 	setTimeout(() => { ReadMore_Button.style.opacity = "1";}, 3000);
 		}
+	if (ReadMore_Button.innerHTML === "Start Reading"){
+	document.body.append(bg_3);
+	document.body.append(bg_3Cover);
+	document.body.append(ExploreTitle);
+	document.body.append(Program_Button);
+	bg_3.style.top = "-95px";
+	const targetElement = document.getElementById("bg_3");  
+        targetElement.scrollIntoView({ behavior: "smooth" });
+	setTimeout(() => { bg_3.style.opacity = "1";}, 300);
+	setTimeout(() => { ExploreTitle.style.opacity = "1";}, 1000);
+	setTimeout(() => { Program_Button.style.opacity = "1";}, 1300);
+		}
+	});
+
+Program_Button.addEventListener("click", () => {
+	setTimeout(() => { ExploreTitle.style.opacity = "0";}, 0);
+	setTimeout(() => { Program_Button.style.opacity = "0";}, 0);
 	});
 
 window.addEventListener("load", loadAnimation);
-window.addEventListener("load", adjustBackground());
-window.addEventListener("resize", adjustBackground());
-
+window.addEventListener("load", adjustBackground);
 
 // Add event listener for window resize
 window.addEventListener("resize", adjustBackground);
